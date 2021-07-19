@@ -6,8 +6,11 @@
         <div class="col-lg-3 margin-tb">
             <a class="d-flex text-center btn btn-secondary mb-2" href="{{ route('posts.create') }}"> New Post</a>
             <form action="{{ route('posts.index') }}" method="GET" role="search">
-                <input type="text" name="search" class="form-control mb-2" placeholder="Search..." required>
-                <button type="submit" class="d-flex btn btn-primary">Submit</button>
+                <div class="input-group mb-3">
+                    <input type="text" name="search" class="form-control" placeholder="Search..."
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
+                </div>
             </form>
         </div>
         <div class="col-lg-8">
@@ -16,6 +19,7 @@
                 <p>{{ $message }}</p>
             </div>
             @endif
+            @if(count($posts) > 0)
             @foreach($posts as $post)
             <div class="card mb-5">
                 <img src="{{ Storage::url($post->image) }}" class="card-img-top" alt="" />
@@ -29,6 +33,9 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <h3>There's nothing around here...</h3>
+            @endif
         </div>
     </div>
 </div>

@@ -113,11 +113,13 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title'     => 'required',
-            'image'     => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'title' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
             $path = $request->file('image')->store('public/images');
             $post->image = $path;
         }

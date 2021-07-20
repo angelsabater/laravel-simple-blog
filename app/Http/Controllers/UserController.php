@@ -55,8 +55,8 @@ class UserController extends Controller
         Log::info($request);
         $request->validate([
             'name'             => 'required',
-            'email'            => 'required|email',
-            'username'         => 'required|min:8|max:255',
+            'email'            => 'required|email|unique:users',
+            'username'         => 'required|min:5|max:255|unique:users',
             'password'         => 'required|min:8|max:255',
             'role_id'          => 'required',
         ]);
@@ -108,8 +108,8 @@ class UserController extends Controller
     {
         $request->validate([
             'name'             => 'required',
-            'email'            => 'required|email',
-            'username'         => 'required|min:8|max:255',
+            'email'            => 'required|email|unique:users,email,'.$user->id,
+            'username'         => 'required|min:5|max:255|unique:users,username,'.$user->id,
             'password'         => 'nullable|min:8|max:255',
             'role_id'          => 'required',
         ]);

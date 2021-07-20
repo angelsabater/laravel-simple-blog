@@ -35,7 +35,7 @@
                         <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}"
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}"
                                 required>
 
                             @error('email')
@@ -49,7 +49,7 @@
                         <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
 
                         <div class="col-md-6">
-                            <input id="username" type="text" class="form-control" name="username"
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username"
                                 value="{{ $user->username }}" required>
 
                             @error('username')

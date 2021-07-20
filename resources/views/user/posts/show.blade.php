@@ -50,17 +50,22 @@
                         <button type="submit" class="btn btn-primary ml-3">Submit</button>
                     </div>
                 </form>
+                <hr>
                 @foreach($comments as $comment)
                 <div class="col p-2">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">
+                                <strong>
                                 @if($post->user_id == $comment->id)
-                                You
+                                    You
                                 @else
-                                {{ $comment->username }}
+                                    {{ $comment->username }}
                                 @endif
+                                </strong>
+                                <p><small><em>Posted at {{$comment->created_at->toDateString()}}</em></small></p>
                             </h5>
+                            <hr>
                             <p class="card-text">{{ $comment->text}}</p>
                         </div>
                     </div>

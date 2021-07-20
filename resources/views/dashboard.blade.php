@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+<img style="width: 20%" src="https://media.giphy.com/media/l0HlGeTBdTqMll15u/giphy.gif">
 <h1 class="display-4 m-2">Hi, {{ Auth::user()->name }}</h1>
 <div class="text-sm sm:ml-0">
     Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})

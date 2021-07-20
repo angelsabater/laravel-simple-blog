@@ -27,7 +27,7 @@ class PostController extends Controller
             $posts = Post::query()
                 ->where('title', 'LIKE', "%{$search}%")
                 ->orWhere('content', 'LIKE', "%{$search}%")
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'desc')
                 ->get();
         } else {
             $posts = Post::latest('id')->get();

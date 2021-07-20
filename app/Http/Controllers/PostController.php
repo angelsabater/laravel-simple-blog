@@ -61,7 +61,7 @@ class PostController extends Controller
             'title'     => 'required|string|max:255',
             'image'     => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-        
+
         $path = $request->file('image') ? $request->file('image')->store('public/images') : null;
 
         $post = new Post;
@@ -86,8 +86,6 @@ class PostController extends Controller
         $comments = Comment::select('users.username', 'comments.id', 'comments.text',  'comments.user_id', 'comments.created_at')
             ->join('users', 'users.id', '=', 'comments.user_id')
             ->where('post_id', '=', $post->id)->get();
-
-        Log::info($comments);
 
         return view('user.posts.show', compact('post'), compact('comments'));
     }
@@ -121,9 +119,7 @@ class PostController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $request->validate([
-                'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            ]);
+            $request->validate(['image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048']);
             $path = $request->file('image')->store('public/images');
             $post->image = $path;
         }
@@ -146,7 +142,6 @@ class PostController extends Controller
     {
         if (Gate::allows('delete-post', $post)) {
             $post->delete();
-
 
             return redirect()->route('posts.index')
                 ->with('success', 'Post has been deleted successfully');

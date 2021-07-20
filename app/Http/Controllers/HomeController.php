@@ -25,15 +25,14 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         $role = Role::select('id')
             ->where('role', '=', 'admin')->first();
 
-        if (Auth::user()->role_id == $role->id)
-        {
+        if (Auth::user()->role_id == $role->id) {
             Session::put('isAdmin', true);
         }
-        
+
         return view('dashboard');
     }
 }

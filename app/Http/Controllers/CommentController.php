@@ -10,15 +10,6 @@ use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +18,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -38,25 +29,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $comment = new Comment();
-        $comment->text = $request->comment;
+        $comment          = new Comment();
+        $comment->text    = $request->comment;
         $comment->user_id = Auth::user()->id;
         $comment->post_id = $request->post_id;
         $comment->save();
         return back();
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -65,7 +45,7 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -77,7 +57,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -89,11 +69,10 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $comment = Comment::findOrFail($comment->id);
-            $comment->delete();
-            return back();
-            
+        $comment->delete();
+        return back();
+
         if (Gate::allows('delete-comment', $comment)) {
-            
         } else {
             abort(403);
         }

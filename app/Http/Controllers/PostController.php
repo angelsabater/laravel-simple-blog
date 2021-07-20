@@ -61,7 +61,7 @@ class PostController extends Controller
             'title'     => 'required|string|max:255',
             'image'     => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-
+        
         $path = $request->file('image') ? $request->file('image')->store('public/images') : null;
 
         $post = new Post;
@@ -146,6 +146,7 @@ class PostController extends Controller
     {
         if (Gate::allows('delete-post', $post)) {
             $post->delete();
+
 
             return redirect()->route('posts.index')
                 ->with('success', 'Post has been deleted successfully');

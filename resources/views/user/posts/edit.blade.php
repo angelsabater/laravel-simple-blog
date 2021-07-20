@@ -47,7 +47,7 @@
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <button type="" class="btn btn-danger mb-3">Remove</button>
+                            <!--button onClick="{/{ Storage::delete($post->image) }}" class="btn btn-outline-secondary">Remove</button-->
                             @if($post->image)
                             <img src="{{ Storage::url($post->image) }}" class="card-img-top" alt="" />
                             @endif

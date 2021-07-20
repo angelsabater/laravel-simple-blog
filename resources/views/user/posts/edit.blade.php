@@ -41,12 +41,13 @@
                     <div class="row">
                         <div class="control-group col-12 mb-3">
                             <div class="form-group">
-                                <strong>Post Image:</strong>
-                                <input type="file" name="image" class="form-control" value="{{ $post->image }}">
+                                <strong>Post Image: {{ $post->image }}</strong>
+                                <input type="file" name="image" class="form-control" value="">
                                 @error('image')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <button type="" class="btn btn-danger mb-3">Remove</button>
                             @if($post->image)
                             <img src="{{ Storage::url($post->image) }}" class="card-img-top" alt="" />
                             @endif

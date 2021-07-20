@@ -8,7 +8,7 @@
                 <div class="mr-auto p-2 bd-highlight">
                     <a class="btn btn-secondary" href="{{ route('posts.index') }}"> Back</a>
                 </div>
-                @if($post->user_id == Auth::user()->id)
+                @if(Auth::user()->id == $post->user_id)
                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                     @csrf
                     <div class="p-2 bd-highlight">
@@ -42,7 +42,8 @@
                     @csrf
                     <div class="row">
                         <div class="control-group col-12 mb-3">
-                            <input type="text" name="comment" class="form-control" placeholder="Add a comment..." required>
+                            <input type="text" name="comment" class="form-control" placeholder="Add a comment..."
+                                required>
                             <input type="hidden" name="post_id" value="{{ $post->id }}" />
                         </div>
                     </div>
@@ -50,20 +51,36 @@
                         <button type="submit" class="btn btn-primary ml-3">Submit</button>
                     </div>
                 </form>
+                @if(count($comments) > 0)
                 <hr>
                 @foreach($comments as $comment)
                 <div class="col p-2">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <strong>
-                                @if($post->user_id == $comment->id)
-                                    You
-                                @else
-                                    {{ $comment->username }}
-                                @endif
-                                </strong>
-                                <p><small><em>Posted at {{$comment->created_at->toDateString()}}</em></small></p>
+                                <div class="d-flex bd-highlight">
+                                    <div class="flex-grow-1 bd-highlight">
+                                        <strong>
+                                            @if(Auth::user()->id == $comment->user_id)
+                                            You
+                                            @else
+                                            {{ $comment->username }}
+                                            @endif
+                                        </strong>
+                                        <p>
+                                            <small><em>Posted at {{$comment->created_at->toDateString()}}</em></small>
+                                        </p>
+                                    </div>
+                                    @if(Auth::user()->id == $comment->user_id)
+                                    <div class="bd-highlight">
+                                        <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                    @endif
+                                </div>
                             </h5>
                             <hr>
                             <p class="card-text">{{ $comment->text}}</p>
@@ -71,6 +88,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </div>

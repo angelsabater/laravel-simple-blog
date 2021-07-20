@@ -25,7 +25,8 @@
                     <div class="row">
                         <div class="control-group col-12 mb-3">
                             <strong>Title:</strong>
-                            <input type="text" name="title" class="form-control" placeholder="Post Title">
+                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                                placeholder="Post Title">
                             @error('title')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
@@ -34,8 +35,8 @@
                     <div class="row">
                         <div class="control-group col-12 mb-3">
                             <strong>Content:</strong>
-                            <textarea class="form-control" style="height:150px" name="content"
-                                placeholder="Post content"></textarea>
+                            <textarea class="form-control @error('content') is-invalid @enderror" style="height:150px"
+                                name="content" placeholder="Post content"></textarea>
                             @error('content')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
@@ -57,4 +58,3 @@
     </div>
 </div>
 @endsection
-

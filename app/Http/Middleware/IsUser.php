@@ -7,7 +7,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class IsUser
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class IsAdmin
     public function handle(Request $request, Closure $next)
     {
         $role = Role::select('id')
-            ->where('role', '=', 'admin')->first();
+            ->where('role', '=', 'user')->first();
 
         if (Auth::user() && Auth::user()->role_id == $role->id)
         {

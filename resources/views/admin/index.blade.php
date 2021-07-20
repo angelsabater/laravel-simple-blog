@@ -23,7 +23,7 @@
             <th>Email</th>
             <th>Username</th>
             <th>Role</th>
-            <th width="200px">Action</th>
+            <th width="150px">Action</th>
         </tr>
         @foreach($users as $user)
         <tr>

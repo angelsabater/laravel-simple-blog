@@ -7,6 +7,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -18,6 +19,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('user');
     }
 
     public function index(Request $request)
@@ -56,7 +58,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'     => 'required',
+            'title'     => 'required|string|max:255',
             'image'     => 'sometimes|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
@@ -81,11 +83,13 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $data['comments'] = Comment::select('users.id', 'users.username', 'comments.text', 'comments.created_at')
+        $comments = Comment::select('users.username', 'comments.id', 'comments.text',  'comments.user_id', 'comments.created_at')
             ->join('users', 'users.id', '=', 'comments.user_id')
             ->where('post_id', '=', $post->id)->get();
 
-        return view('user.posts.show', compact('post'), $data);
+        Log::info($comments);
+
+        return view('user.posts.show', compact('post'), compact('comments'));
     }
 
     /**
@@ -113,7 +117,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
         ]);
 
         if ($request->hasFile('image')) {

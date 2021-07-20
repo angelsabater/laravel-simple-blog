@@ -14,7 +14,7 @@ class AlterImageColumn extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('content')->nullable()->change();
+            $table->text('content')->nullable()->change();
             $table->string('image')->nullable()->change();
         });
     }
@@ -27,7 +27,7 @@ class AlterImageColumn extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('content')->nullable(false)->change();
+            $table->text('content')->nullable(false)->change();
             $table->string('image')->nullable(false)->change();
         });
     }

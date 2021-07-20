@@ -7,12 +7,13 @@
     Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
 </div>
 <ul class="nav justify-content-center">
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('posts.index') }}">{{ __('Posts') }}</a>
-    </li>
     @if (Session::get('isAdmin'))
     <li class="nav-item">
         <a class="nav-link" href="{{ route('users.index') }}">{{ __('Manage') }}</a>
+    </li>
+    @else
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('posts.index') }}">{{ __('Posts') }}</a>
     </li>
     @endif
     <li class="nav-item">

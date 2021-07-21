@@ -21,41 +21,57 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## About the Project
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+A blog focused website that uses Laravel 8.5 and PHP 7.3.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+### Development Environment
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- **[Laravel 8.5](https://laravel.com/docs/8.x/releases)**
+- **[PHP 7.3](https://www.php.net/releases/7_0_0.php)**
+- **[MySQL 8.0](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-25.html)**
 
-### Premium Partners
+## Seed Examples
+Running the migrations with the seeds:
+```bash
+$ php artisan migrate --seed
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+This will create a new admin and a user that you can use to sign in:
+```yml
+email: admin@test.com
+username: admin
+password: password
+```
 
-## Contributing
+```yml
+email: user1@test.com
+username: user1
+password: password
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Useful Commands
+Running the project:
+```bash
+$ php artisan serve
+```
 
-## Code of Conduct
+Seeding the database:
+```bash
+$ php artisan db:seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Rebuild database and run db seeds:
+```bash
+$ php artisan migrate:refresh --seed
+```
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Configure directory for saving images:
+**(Image upload functions are still on development)**
+```bash
+$ php artisan storage:link
+```
 
 ## License
 

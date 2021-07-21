@@ -89,7 +89,6 @@
 
                         <div class="col-md-6 mt-2 mb-2">
                             <select class="form-select" name="role_id" required>
-                                <option selected>Role</option>
                                 @foreach($roles as $role)
                                 <option value="{{$role->id}}">{{$role->role}}</option>
                                 @endforeach

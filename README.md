@@ -32,6 +32,13 @@ A blog focused website that uses Laravel 8.5 and PHP 7.3.
 - **[PHP 7.3](https://www.php.net/releases/7_0_0.php)**
 - **[MySQL 8.0](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-25.html)**
 
+### Installation Helpers
+
+- **[Composer 2.1.3](https://getcomposer.org/download/)**
+- **[Laravel 8.x](https://laravel.com/docs/8.x)**
+- **[PHP](https://www.php.net/manual/en/install.phpp)**
+- **[MySQL](https://dev.mysql.com/downloads/installer/)**
+
 ## Seed Examples
 Running the migrations with the seeds:
 ```bash
